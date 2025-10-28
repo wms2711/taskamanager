@@ -1,0 +1,297 @@
+openapi: 3.0.3
+info:
+  contact:
+    email: support@taskmanager.com
+    name: Task Manager API Support
+  description: A simple task management API for managing tasks with CRUD operations
+  title: Task Manager API
+  version: 1.0.0
+servers:
+- description: Development server
+  url: http://localhost:8080
+paths:
+  /tasks:
+    get:
+      description: Retrieve a list of all tasks
+      operationId: getAllTasks
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: "#/components/schemas/Task"
+                type: array
+          description: List of tasks retrieved successfully
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error
+      summary: Get all tasks
+      tags:
+      - Tasks
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Tasks
+    post:
+      description: Create a new task with the provided information
+      operationId: createTask
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskRequest"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+          description: Task created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid input
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error
+      summary: Create a new task
+      tags:
+      - Tasks
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Tasks
+  /tasks/{id}:
+    delete:
+      description: Delete a specific task by its ID
+      operationId: deleteTask
+      parameters:
+      - description: Task ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "204":
+          description: Task deleted successfully
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Task not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error
+      summary: Delete task by ID
+      tags:
+      - Tasks
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Tasks
+    get:
+      description: Retrieve a specific task by its ID
+      operationId: getTaskById
+      parameters:
+      - description: Task ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+          description: Task retrieved successfully
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Task not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error
+      summary: Get task by ID
+      tags:
+      - Tasks
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Tasks
+    put:
+      description: Update an existing task with the provided information
+      operationId: updateTask
+      parameters:
+      - description: Task ID
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          format: int64
+          type: integer
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TaskRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Task"
+          description: Task updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Invalid input
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Task not found
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+          description: Internal server error
+      summary: Update task by ID
+      tags:
+      - Tasks
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+      x-tags:
+      - tag: Tasks
+components:
+  schemas:
+    Task:
+      example:
+        createdAt: 2024-01-01T10:00:00Z
+        description: Write comprehensive documentation for the task management API
+        id: 1
+        completed: false
+        title: Complete project documentation
+        updatedAt: 2024-01-01T10:00:00Z
+      properties:
+        id:
+          description: Unique identifier for the task
+          example: 1
+          format: int64
+          type: integer
+        title:
+          description: Title of the task
+          example: Complete project documentation
+          maxLength: 255
+          type: string
+        description:
+          description: Detailed description of the task
+          example: Write comprehensive documentation for the task management API
+          maxLength: 1000
+          type: string
+        completed:
+          description: Whether the task is completed
+          example: false
+          type: boolean
+        createdAt:
+          description: Timestamp when the task was created
+          example: 2024-01-01T10:00:00Z
+          format: date-time
+          type: string
+        updatedAt:
+          description: Timestamp when the task was last updated
+          example: 2024-01-01T10:00:00Z
+          format: date-time
+          type: string
+      required:
+      - completed
+      - createdAt
+      - description
+      - id
+      - title
+      - updatedAt
+      type: object
+    TaskRequest:
+      example:
+        description: Write comprehensive documentation for the task management API
+        completed: false
+        title: Complete project documentation
+      properties:
+        title:
+          description: Title of the task
+          example: Complete project documentation
+          maxLength: 255
+          type: string
+        description:
+          description: Detailed description of the task
+          example: Write comprehensive documentation for the task management API
+          maxLength: 1000
+          type: string
+        completed:
+          default: false
+          description: Whether the task is completed
+          example: false
+          type: boolean
+      required:
+      - description
+      - title
+      type: object
+    Error:
+      example:
+        details: Task with ID 123 does not exist
+        message: Task not found
+        timestamp: 2024-01-01T10:00:00Z
+      properties:
+        message:
+          description: Error message
+          example: Task not found
+          type: string
+        timestamp:
+          description: Timestamp when the error occurred
+          example: 2024-01-01T10:00:00Z
+          format: date-time
+          type: string
+        details:
+          description: Additional error details
+          example: Task with ID 123 does not exist
+          type: string
+      required:
+      - message
+      - timestamp
+      type: object

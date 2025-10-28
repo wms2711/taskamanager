@@ -1,0 +1,132 @@
+{
+	"id": "5d5a0cbe-e6f1-40d0-8521-1e0ba875879b",
+	"name": "Task Manager API",
+	"timestamp": "2025-10-28T06:02:49.955Z",
+	"collection_id": "34279406-f5d0abef-ec45-4475-9499-282f99b26b61",
+	"folder_id": 0,
+	"environment_id": "0",
+	"totalPass": 0,
+	"delay": 0,
+	"persist": true,
+	"status": "finished",
+	"startedAt": "2025-10-28T06:02:49.299Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "608a5f76-de5c-4666-83b3-09f8586ce9cb",
+			"name": "Get All Tasks",
+			"url": "http://localhost:8080/tasks",
+			"time": 11,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				11
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f9bd36f4-a726-4be4-bca0-da287222b6b7",
+			"name": "Create New Task",
+			"url": "http://localhost:8080/tasks",
+			"time": 7,
+			"responseCode": {
+				"code": 201,
+				"name": "Created"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				7
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "f2a97224-892d-4b0d-8978-394780c8efdc",
+			"name": "Get Task by ID",
+			"url": "http://localhost:8080/tasks/8",
+			"time": 8,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				8
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "444e4ccc-e707-4613-8f23-5db7caa9437b",
+			"name": "Update Task",
+			"url": "http://localhost:8080/tasks/8",
+			"time": 10,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				10
+			],
+			"allTests": [
+				{}
+			]
+		},
+		{
+			"id": "097c6447-2359-4573-8e92-3b59fb9af0cb",
+			"name": "Delete Task",
+			"url": "http://localhost:8080/tasks/8",
+			"time": 9,
+			"responseCode": {
+				"code": 204,
+				"name": "No Content"
+			},
+			"tests": {},
+			"testPassFailCounts": {},
+			"times": [
+				9
+			],
+			"allTests": [
+				{}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 45,
+	"collection": {
+		"requests": [
+			{
+				"id": "608a5f76-de5c-4666-83b3-09f8586ce9cb",
+				"method": "GET"
+			},
+			{
+				"id": "f9bd36f4-a726-4be4-bca0-da287222b6b7",
+				"method": "POST"
+			},
+			{
+				"id": "f2a97224-892d-4b0d-8978-394780c8efdc",
+				"method": "GET"
+			},
+			{
+				"id": "444e4ccc-e707-4613-8f23-5db7caa9437b",
+				"method": "PUT"
+			},
+			{
+				"id": "097c6447-2359-4573-8e92-3b59fb9af0cb",
+				"method": "DELETE"
+			}
+		]
+	}
+}
