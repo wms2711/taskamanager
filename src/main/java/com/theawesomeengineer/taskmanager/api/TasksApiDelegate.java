@@ -20,7 +20,7 @@ import jakarta.annotation.Generated;
  * A delegate to be called by the {@link TasksApiController}}.
  * Implement this interface with a {@link org.springframework.stereotype.Service} annotated class.
  */
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-10-28T12:34:46.383096376+07:00[Asia/Jakarta]", comments = "Generator version: 7.16.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2025-10-28T15:56:28.569748637+07:00[Asia/Jakarta]", comments = "Generator version: 7.16.0")
 public interface TasksApiDelegate {
 
     default Optional<NativeWebRequest> getRequest() {

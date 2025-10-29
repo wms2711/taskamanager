@@ -4,7 +4,6 @@ src/main/java/com/theawesomeengineer/OpenApiGeneratorApplication.java
 src/main/java/com/theawesomeengineer/RFC3339DateFormat.java
 src/main/java/com/theawesomeengineer/taskmanager/api/ApiUtil.java
 src/main/java/com/theawesomeengineer/taskmanager/api/TasksApi.java
-src/main/java/com/theawesomeengineer/taskmanager/api/TasksApiController.java
 src/main/java/com/theawesomeengineer/taskmanager/api/TasksApiDelegate.java
 src/main/java/com/theawesomeengineer/taskmanager/model/Error.java
 src/main/java/com/theawesomeengineer/taskmanager/model/Task.java

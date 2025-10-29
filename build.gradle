@@ -13,11 +13,19 @@ repositories {
     mavenCentral()
 }
 
+sourceSets {
+    integrationTest {
+        compileClasspath += sourceSets.main.output + configurations.testCompileClasspath
+        runtimeClasspath += sourceSets.main.output + configurations.testRuntimeClasspath
+    }
+}
+
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.apache.httpcomponents.client5:httpclient5:5.3.1'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.17.2'
 
     // MySQL
     runtimeOnly 'com.mysql:mysql-connector-j:8.4.0'
@@ -41,6 +49,16 @@ dependencies {
     testImplementation 'org.testcontainers:junit-jupiter'
     testImplementation 'org.testcontainers:mysql'
     testImplementation 'com.h2database:h2'
+    implementation 'org.assertj:assertj-core:3.26.3'
+}
+
+task integrationTest(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
+    useJUnitPlatform()
+    failFast = true
 }
 
 test {
@@ -85,3 +103,4 @@ jacocoTestCoverageVerification {
 
 test.finalizedBy jacocoTestReport
 check.dependsOn jacocoTestCoverageVerification
+

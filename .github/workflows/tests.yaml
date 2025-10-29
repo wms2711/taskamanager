@@ -9,7 +9,6 @@ on:
       - 'hotfix/**'
   push:
     branches:
-      - develop
       - main
 
 jobs:
@@ -43,3 +42,62 @@ jobs:
             build/reports/tests/test/
             build/test-results/
           retention-days: 7
+
+      # - name: Notify Success
+      #   if: success()
+      #   uses: jdcargile/ms-teams-notification@v1.4
+      #   with:
+      #     github-token: ${{ github.token }}
+      #     ms-teams-webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+      #     notification-summary: "Tests PASSED | ${{ github.ref_name }} | ${{ github.job }}"
+      #     notification-color: 28A745
+      #     timezone: Asia/Singapore
+
+      # - name: Notify Failure
+      #   if: failure()
+      #   uses: jdcargile/ms-teams-notification@v1.4
+      #   with:
+      #     github-token: ${{ github.token }}
+      #     ms-teams-webhook-uri: ${{ secrets.MS_TEAMS_WEBHOOK_URI }}
+      #     notification-summary: "Tests FAILED | ${{ github.ref_name }} | ${{ github.job }}"
+      #     notification-color: DC3545
+      #     timezone: Asia/Singapore
+
+  # sonarqube:
+  #   needs: test  # Wait for tests to pass
+  #   runs-on: self-hosted
+  #   name: SonarQube Code Analysis
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #       with:
+  #         fetch-depth: 0
+  #     - uses: actions/download-artifact@v4
+  #       with:
+  #         name: coverage-${{ github.sha }}
+  #         path: .
+  #     - uses: SonarSource/sonarqube-scan-action@master
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  #         # SONAR_ROOT_CERT: ${{ secrets.SONAR_ROOT_CERT }}
+  #       with:
+  #         projectBaseDir: .
+  #         args: 
+  #           -Dsonar.projectKey=E2W-L-oneems_ocpp_service_stage
+  #           -Dsonar.python.version=3.10
+  #           -Dsonar.python.coverage.reportPaths=coverage.xml
+  #           -Dsonar.scm.provider=git
+  #           -Dsonar.exclusions=coverage.xml
+
+  #     # Check the Quality Gate status.
+  #     - name: SonarQube Quality Gate check
+  #       id: sonarqube-quality-gate-check
+  #       uses: sonarsource/sonarqube-quality-gate-action@master
+  #       # Force to fail step after specific time.
+  #       timeout-minutes: 5
+  #       env:
+  #         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  #         SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+  #         # SONAR_ROOT_CERT: ${{ secrets.SONAR_ROOT_CERT }}
+
+  # Build and push to cloud repo
