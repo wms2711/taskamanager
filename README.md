@@ -39,7 +39,7 @@ Key features:
 ```bash
 # 1. Clone the repo or download the zip
 git clone https://github.com/<repo name>
-cd taskmanager
+cd taskamanager
 
 # 2. Run everything (API + MySQL)
 ./run.sh
