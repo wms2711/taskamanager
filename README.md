@@ -116,8 +116,9 @@ Open `index.html` to view.
    3. Application code packaged as a Docker image → pushed to Amazon ECR.
    4. Compute choices:
       1. EC2: run the container on an EC2 instance in a public subnet, security-group ingress only from the ALB.
-      2. EKS: deploy the pod behind an AWS Load Balancer Controller.
+      2. EKS: deploy the pod behind an AWS Load Balancer Controller running node with EC2 instance.
       3. Lambda serverless.
+      4. Others...
    5. Application Load Balancer (ALB) in the public subnets, terminates TLS  with a certificate from AWS Certificate Manager (ACM).
    6. Route 53 public hosted zone: create an A (or CNAME) record that points the domain to the ALB DNS name.
    7. Security groups / NACLs:
