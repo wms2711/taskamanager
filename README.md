@@ -106,7 +106,7 @@ Open `index.html` to view.
 - **Self-hosted GitHub runner** labelled self-hosted is available for the CI workflow; if absent, the test job must be changed to other available runners.
 
 ## Known Limitations
-- **Authentication/authorisation** – the API is completely open (no auth); any client can create, update or delete tasks. Add JWT auth.
+- **Authentication/authorisation** – the API is completely open (no auth); any client can create, update or delete tasks. Add logining in (OIDC with OAuth 2.0 with JWT token auth) with RBA.  
 - **Hard-coded** configs or secrets in docker-compose.yml, should be externalised via secrets manager / Kubernetes secrets / Hashicorp Vault / other secured secrets storage services.
 - **Hard-coded** configs or secrets in CI/CD pipeline, should be stored in GitHub **secrets and variables** section.
 - **Rate-limiting or input sanitisation** beyond Bean-Validation annotations because malicious payloads could still hit the service. Rate limit endpoints to prevent over-use or DDoS or brute-force or oversized payload DoS controlling the API coming in.
