@@ -83,7 +83,7 @@ jobs:
   #       with:
   #         projectBaseDir: .
   #         args: 
-  #           -Dsonar.projectKey=E2W-L-oneems_ocpp_service_stage
+  #           -Dsonar.projectKey=projectname
   #           -Dsonar.python.version=3.10
   #           -Dsonar.python.coverage.reportPaths=coverage.xml
   #           -Dsonar.scm.provider=git
